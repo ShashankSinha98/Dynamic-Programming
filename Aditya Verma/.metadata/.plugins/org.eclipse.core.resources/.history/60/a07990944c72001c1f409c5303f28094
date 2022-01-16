@@ -1,0 +1,36 @@
+
+public class CountOfSubsetsSumwithGivenSumTopDown {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int[] arr = new int[] {1, 2, 3, 4, 5};
+		int sum = 10;
+		int ans = perfectSum(arr, arr.length, sum);
+		System.out.println("Ans: "+ans);
+
+	}
+	
+	public static int perfectSum(int arr[],int N, int sum) 
+	{ 
+		int[][] T = new int[N+1][sum+1];
+		
+		for(int i=1; i<=sum; i++) T[0][i] = 0;
+		for(int i=0; i<=N; i++) T[i][0] = 1;
+		
+		for(int i=1; i<=N; i++) {
+			for(int j=1; j<=sum; j++) {
+				
+				if(arr[i-1]<=j) {
+					T[i][j] = T[i-1][j-arr[i-1]] + T[i-1][j];
+				} else {
+					T[i][j] = T[i-1][j];
+				}
+			}
+		}
+		
+		return T[N][sum];
+	} 
+
+
+}

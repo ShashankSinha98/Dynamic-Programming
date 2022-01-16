@@ -1,0 +1,16 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Alert.Builder builder = new Alert.Builder()
+				.setTitle("Test Dialog")
+				.setMessage("This is a test dialog")
+				.setPositiveOnClick("YES", (String msg)-> {
+					System.out.println("Clicked Positive Button Action: "+msg);
+				});
+
+	}
+
+}

@@ -1,0 +1,12 @@
+
+public class Alert {
+
+	static class Builder {
+		
+		private String title;
+		private String message;
+		
+		
+		
+	}
+}

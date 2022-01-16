@@ -1,0 +1,30 @@
+
+public class RodCutting {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int[] price = new int[] {3, 5, 8, 9, 10, 17, 17, 20};
+
+		
+		int ans = cutRod(price, price.length);
+		System.out.println("Ans: "+ans);
+	}
+	
+	public static int cutRod(int price[], int n) {
+        
+		return solve(price, n, n);
+    }
+	
+	private static int solve(int[] price, int L, int n) {
+		
+		if(n==0||L==0) return 0;
+		
+		if(n<=L) {
+			return Math.max(price[n-1]+solve(price, L-n, n-1), 
+					solve(price,L,n-1));
+		} else {
+			return solve(price, L, n-1);
+		}
+	}
+}

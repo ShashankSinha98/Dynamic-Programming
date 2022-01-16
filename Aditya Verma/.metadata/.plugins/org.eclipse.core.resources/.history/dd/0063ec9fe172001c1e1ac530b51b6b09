@@ -1,0 +1,12 @@
+
+public class Test {
+
+	static class Builder {
+		
+		private String title;
+		private String message;
+		
+		
+		
+	}
+}

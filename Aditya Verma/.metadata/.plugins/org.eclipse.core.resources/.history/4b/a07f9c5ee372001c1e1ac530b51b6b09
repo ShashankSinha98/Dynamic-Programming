@@ -1,0 +1,32 @@
+
+public class Alert {
+
+	static class Builder {
+		
+		private String title;
+		private String message;
+		private String positiveButton;
+		
+		public Builder() {}
+		
+		public Builder setTitle(String title) {
+			this.title = title;
+			return this;
+		}
+		
+		public Builder setMessage(String message) {
+			this.message = message;
+			return this;
+		}
+		
+		public Builder setPositiveOnClick(String positiveButtonText, onClickListener listener) {
+			this.positiveButton = positiveButtonText;
+			return this;
+		}
+		
+	}
+}
+
+interface onClickListener {
+	void onClick(String message);
+}
