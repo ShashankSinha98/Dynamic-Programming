@@ -1,0 +1,50 @@
+import java.util.*;
+public class LongestPalindromicSubstring {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String s = "babad";
+		String ans = longestPalindrome(s);
+		System.out.println("Ans: "+ans);
+		
+	}
+	
+	public static String longestPalindrome(String s) {
+		
+		if(s.length()==0) return "";
+		
+		int n = s.length();
+		int[][] T = new int[n+1][n+1];
+		
+		String rs = new StringBuilder(s).reverse().toString();
+		
+		int max = 0, mi=0, mj=0;
+		for(int i=1; i<=n; i++) {
+			for(int j=1; j<=n; j++) {
+				if(s.charAt(i)==rs.charAt(j)) {
+					T[i][j] = T[i-1][j-1]+1;
+					
+					if(T[i][j]>max) {
+						max = T[i][j];
+						mi = i; mj = j;
+					}
+				} else {
+					T[i][j] = 0;
+				}
+			}
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		
+		if(max==0) return s.charAt(0)+"";
+		
+		while(mi!=0 && mj!=0 && T[mi][mj]!=0) {
+			sb.append(s.charAt(mi));
+			mi--; mj--;
+		}
+		
+		return sb.toString();
+    }
+
+}

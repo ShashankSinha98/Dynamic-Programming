@@ -1,0 +1,31 @@
+
+public class LengthOfLongestSubsequenceOfOneStringWhichIsSubstringOfAnotherString {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String x = "abcd";
+		String y = "bacdbdcd";
+		
+		int maxLen = 0;
+		for(int i=1; i<=y.length(); i++) {
+			int ans = maxSubsequenceSubstring(x, y, x.length(), i);
+			maxLen = Math.max(maxLen, ans);
+		}
+		
+		System.out.println("Ans: "+maxLen);
+
+	}
+	
+	static int maxSubsequenceSubstring(String X, String Y, int n, int m) 
+    {
+        if(n==0 || m==0) return 0;
+        
+        if(X.charAt(n-1)==Y.charAt(m-1)) {
+        	return maxSubsequenceSubstring(X, Y, n-1, m-1) + 1;
+        } else {
+        	return maxSubsequenceSubstring(X, Y, n-1, m);
+        }
+    }
+
+}

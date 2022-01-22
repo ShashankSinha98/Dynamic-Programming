@@ -1,0 +1,34 @@
+
+public class MinimumAndMaximumValuesOfAnExpressionWithMultiplyAndDivide {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s = "1+2*3+4*5";
+		int ans = minValue(s);
+		System.out.println("Min ans: "+ans);
+	}
+	
+	static int minValue(String s) {
+		return minSolve(s);
+	}
+	
+	static int minSolve(String s) {
+		
+		if(s.length()==1) return s.charAt(0)-'0';
+		
+		int ans = Integer.MAX_VALUE;
+		for(int k=1; k<s.length(); k+=2) {
+			int left = minSolve(s.substring(0, k));
+			int right = minSolve(s.substring(k+1));
+			
+			if(s.charAt(k)=='+') 
+				ans = Math.min(ans, left+right);
+			else if(s.charAt(k)=='-')
+				ans = Math.min(ans, left*right);
+		}
+		
+		return ans;
+	}
+
+}

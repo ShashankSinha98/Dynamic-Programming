@@ -1,0 +1,50 @@
+
+public class BooleanParenthesization {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String S = "";
+		int ans = countWays(S.length(), S);
+		System.out.println("Ans: "+ans);
+
+	}
+	
+	static int countWays(int N, String S){
+        
+		return solve(S, 0, N-1, true);
+    }
+	
+	private static int solve(String S, int i, int j, boolean isTrue) {
+		
+		if(i>j) return 0;
+		
+		if(i==j) {
+			if(isTrue) return S.charAt(i)=='T'?1:0;
+			else return S.charAt(i)=='F'?1:0;
+		}
+		
+		int ans = 0;
+		for(int k=i+1; k<j; k+=2) {
+			
+			int LF = solve(S, i, k-1, false);
+			int LT = solve(S, i, k-1, true);
+			int RF = solve(S, k+1, j, false);
+			int RT = solve(S, k+1, j, true);
+			
+			if(S.charAt(k)=='&') {
+				if(isTrue) ans += LT*RT;
+				else ans += LF*RF + LT*RF + LF*RF;
+			} else if(S.charAt(k)=='|') {
+				if(isTrue) ans += RT*LT + LF*RT + LT*RF;
+				else ans += LF*RF;
+			} else if(S.charAt(k)=='^' ) {
+				if(isTrue) ans+= LF*RT + LT*RF;
+				else ans+= LT*RT + LF*RF;
+			}
+		}
+		
+		return ans;
+	}
+
+}

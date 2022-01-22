@@ -1,0 +1,31 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int[] P = new int[] {2,3,6,10,11};
+		int k = 9;
+		int ans = getMinimumCost(P, k);
+		System.out.println("Ans: "+ans);
+				
+	}
+	
+	static int MAX_CAP = 2*((int)Math.pow(10, 5)) + 5;
+	static int MAX_PARCELS = ((int)Math.pow(10, 6)) + 2;
+	static int getMinimumCost(int[] p, int k) {
+		
+		if(k==p.length) return 0;
+		
+		boolean[] T = new boolean[MAX_CAP];
+		for(int i: p) T[i] = true;
+		
+		int ans = 0;
+		int pi=1;
+		while(k-p.length!=0) {
+			if(!T[pi]) {ans+=pi; k--;}
+		}
+		return ans;
+	}
+
+}

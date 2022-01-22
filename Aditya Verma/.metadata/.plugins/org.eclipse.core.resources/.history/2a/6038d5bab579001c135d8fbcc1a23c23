@@ -1,0 +1,29 @@
+
+public class EggDroppingPuzzle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	static int eggDrop(int e, int f) {
+	    
+		
+	}
+	
+	private static int solve(int eggs, int floors) {
+		
+		if(floors==0|| floors==1) return floors;
+		
+		if(eggs==1) return floors;
+		
+		int ans = Integer.MIN_VALUE;
+		for(int k=1; k<=floors; k++) {
+			int temp = Math.max(solve(eggs-1, k-1), solve(eggs, floors-k)) + 1;
+			ans = Math.min(ans, temp);
+		}
+		
+		return ans;
+	}
+
+}

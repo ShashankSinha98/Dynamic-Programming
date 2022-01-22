@@ -1,0 +1,40 @@
+
+public class ScrambledStrings {
+	
+	public static void main(String[] args) {
+		
+		String s1 = "great";
+		String s2 = "rgeat";
+		
+		boolean ans = isScramble(s1, s2);
+		System.out.println("Ans: "+ans);
+	}
+	
+	public static boolean isScramble(String s1, String s2) {
+		
+        return solve(s1, s2);
+    }
+	
+	private static boolean solve(String a, String b) {
+		
+		if(a.length()!=b.length()) return false;
+		
+		if(a.equals(b)) return true;
+		
+		if(a.length()<=1) return false;
+		
+		boolean isScramble = false;
+		for(int k=1; k<a.length(); k++) {
+			boolean noSplit = solve(a.substring(0,k), b.substring(0,k)) &&
+								solve(a.substring(k), b.substring(k));
+			
+			boolean split = solve(a.substring(0,k), b.substring(k)) &&
+					solve(a.substring(k), b.substring(0,k));
+			
+			if(split || noSplit) isScramble = true;
+		}
+		
+		return isScramble;
+	}
+
+}

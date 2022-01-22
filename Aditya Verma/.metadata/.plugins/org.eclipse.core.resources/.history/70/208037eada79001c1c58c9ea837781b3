@@ -1,0 +1,17 @@
+
+public class ScrambledStrings {
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	public static boolean isScramble(String s1, String s2) {
+		
+        
+    }
+	
+	private static boolean solve(String s1, String s2) {
+		
+	}
+
+}

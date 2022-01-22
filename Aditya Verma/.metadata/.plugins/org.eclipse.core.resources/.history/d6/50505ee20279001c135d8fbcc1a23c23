@@ -1,0 +1,35 @@
+
+public class MatrixChainMultiplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	static int ANS;
+	static int matrixMultiplication(int N, int arr[])
+    {
+        int i=1, j=N-1;
+        ANS = Integer.MAX_VALUE;
+        
+        return solve(arr, i, j);
+    }
+	
+	private static int solve(int[] arr, int i, int j) {
+		
+		if(i>=j) return 0;
+		
+		ANS = Integer.MAX_VALUE;
+		int tempAns;
+		for(int k=i; k<j; k++) {
+			int tempAns1 = solve(arr, i, k);
+			int tempAns2 = solve(arr, k+1, j);
+			
+			tempAns = tempAns1 + tempAns2 + arr[i-1]*arr[k]*arr[j];
+			ANS = Math.min(ANS, tempAns);
+		}
+		
+		return ANS;
+	}
+
+}
